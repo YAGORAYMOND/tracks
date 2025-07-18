@@ -1,0 +1,13 @@
+/*
+Track I: cornisa
+by: Yago Raymond
+execute on https://strudel.cc/
+*/
+
+sound1: s("dantranh_tremolo").speed("<-1 -2 -1 -3>".slow(2)).lpf(600) 
+sound2: s("dantranh_tremolo [hh bd]").begin(0.7).clip(0.8).speed(choose("-1","-2", "-0.5"))
+  .delay(choose("0","0.1")).dt(0.125).room(0.1).postgain(0.8)
+  .jux(pan).pan("<0 1>/2")
+  .lpf(slider(1000,100,1000))
+perc1: s("bd(3,8)").bank("tr808")
+perc2: s("hh(7,8)").bank("tr808").speed(choose("1","-1"))//.jux(pan).pan("<0 1>/2")
