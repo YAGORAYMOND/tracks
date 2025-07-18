@@ -1,0 +1,21 @@
+setcpm(30)
+samples({
+  choir:'aachen/choir3.mp3'
+}, 'https://raw.githubusercontent.com/YAGORAYMOND/samples/refs/heads/main/');
+
+choir: s("choir")
+.slice(9,"2 <3 3 3 3 [3@8 [3!10 | 3!20]]>  1 <8 6 8 7>").slow(2)
+.clip(1.2) //slightly icrease to 2 end by puting 10 and silencing
+.ply("<1 2 3>").slow(1.2) //slow 1 is less random
+.almostNever(off(2/16, x=>x.speed("[1.5 2]").gain(0.25))) //glitchy offset
+.room(.5)
+.lpf("<200 300 400 500 700 800 1000 1200 1000 800 700 600 500 400 200>".slow(2))
+//.mask("<3 7 3 6>,8")
+
+beat: s("bd:1 bd:3 -@6").bank("tr808").pan("0.2 0.8 -@6").room(0.4).postgain(.2)
+
+rimperc: s("tom_rim(<3 7 3 6>,8)").n("1 3 1 2 4 5") //change order of n
+ .pan(choose("0","1"))
+ .sometimesBy(0.5,x=>x.delay(0.3))
+ .speed(choose("1","1","0.7","0.4"))
+ .postgain(.3)
