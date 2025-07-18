@@ -1,3 +1,9 @@
+/*
+Track I: cornisa
+by: Yago Raymond
+execute on https://strudel.cc/
+*/
+
 setcpm(30)
 samples({
   choir:'aachen/choir3.mp3'
