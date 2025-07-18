@@ -4,6 +4,7 @@ by: Yago Raymond
 execute on https://strudel.cc/
 */
 
+setcpm(30)
 sound1: s("dantranh_tremolo").speed("<-1 -2 -1 -3>".slow(2)).lpf(600) 
 sound2: s("dantranh_tremolo [hh bd]").begin(0.7).clip(0.8).speed(choose("-1","-2", "-0.5"))
   .delay(choose("0","0.1")).dt(0.125).room(0.1).postgain(0.8)
