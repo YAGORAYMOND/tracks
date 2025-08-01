@@ -22,7 +22,7 @@ chorous : n("3").chord("<F Em F Em G@2 D Em>").voicing()
   .room(0.6)
   .s('gm_choir_aahs')
   .postgain(0.7)
-  .lpf(slider(2000300,2000))
+  .lpf(slider(300,300,2000))
   //.attack(0.01).release(0.01).decay(0.1).chop(choose("5","50","100")).postgain(1.2)
 
 perc: s("- juju")
