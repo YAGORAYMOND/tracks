@@ -1,0 +1,45 @@
+samples({
+  vinyl:'noise/vinyl1.wav',
+  juju:'perc/juju_stick/juju_stick_5.wav',
+  crit:'vocals/crit/crit_3.wav'
+}, 'https://raw.githubusercontent.com/YAGORAYMOND/samples/refs/heads/main/');
+
+highs: n("0 3 1 2").chord("<F Em F Em G@2 D Em>").voicing()
+  .clip("4 3 2 1")
+  .transpose("<-12 -5 0>".slow(8))
+  .s('vibraphone')
+  .delay(0.3)
+  .coarse("0.1 0.9 2".slow(8))
+  .room(1)
+  .pan("<0.8 0.2>/2").jux(pan)
+  .postgain(0.3)
+  .lpf(slider(1000,300,1000))
+
+chorous : n("3").chord("<F Em F Em G@2 D Em>").voicing()
+  .clip("3")
+  .transpose("<-12 -5 0>".slow(8))
+  .delay(0.3)
+  .room(0.6)
+  .s('gm_choir_aahs')
+  .postgain(0.7)
+  .lpf(slider(2000300,2000))
+  //.attack(0.01).release(0.01).decay(0.1).chop(choose("5","50","100")).postgain(1.2)
+
+perc: s("- juju")
+  .lpf(500)
+  .delay(1).dt("<0.125 0.25 0.5 1>".slow(2))
+  .room(1)
+  .speed("<0.9 1 1.1>")
+
+_ahhh: s("< - crit - - crit>")
+  .clip(1) //add or remove to cut or overlay the samples
+  .phaser(0).phaserdepth(1)
+  .distort("2:0.4")
+  .room(0.5).sz(5)
+  .striate(1) //modulate from 1 to 6
+  .freq(60)//60 original. modulate from 50 to 80
+  .postgain(1)
+  
+texture: s("vinyl").clip(1)
+  .cpm(5).begin("0.1")
+  .gain(0.15)
