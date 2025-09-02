@@ -1,3 +1,9 @@
+/*
+Track V: Angoixa
+by: Yago Raymond
+execute on https://strudel.cc/
+*/
+
 samples({
   vinyl:'noise/vinyl1.wav',
   juju:'perc/juju_stick/juju_stick_5.wav',
