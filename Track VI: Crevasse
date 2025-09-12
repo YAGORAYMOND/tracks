@@ -25,7 +25,7 @@ _voices:speed("[- - [- 1 ] -]".slow(2))
   .s("arpa").bpf(1000).gain(3)
   .note("B2")
  
-_break: speed("[- [- -4][- 2 -][- -0.6]]").s("snare_modern:17").clip(1).begin("- 0.5 0.01 0.7")
+_drumbreak: speed("[- [- -4][- 2 -][- -0.6]]").s("snare_modern:17").clip(1).begin("- 0.5 0.01 0.7")
 
 perc: stack(
   s("[sat_bd:1!4]").gain(1.1),
