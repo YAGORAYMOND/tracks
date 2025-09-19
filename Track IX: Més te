@@ -1,0 +1,42 @@
+/*
+Track IX: Més te
+by: Yago Raymond
+execute on https://strudel.cc/
+*/
+
+samples({
+  pad_arpa:'synth/pad_harp.wav', 
+    rain:'noise/rain_crackle.wav',
+  piezo:'perc/piezo/piezo_2.wav',
+}, 'https://raw.githubusercontent.com/YAGORAYMOND/samples/refs/heads/main/');
+
+pad: s("pad_arpa".slow(4)).clip(0.8)
+  .gain(5).bpf(100).bpq(4)
+  .room(0.7).sz(5).roomfade(10)
+  .delay("<0 0.3 0.7 1 0@100>".slow(3)).delaytime(.2).delayfeedback(.9).orbit(2)
+ 
+_piano: n("1 3 4 8 1 9 4").chord("<GM7 G5 G11>".slow(2)).voicing()
+  .s("piano").clip(1.3)
+  //.begin(.1)
+  .begin("<.1 <.3 .6> <.6 .1> <.6 .4>>").gain(1.2)
+  .attack(.2)
+  .room(1).sz(5).roomfade(10)
+  .off(.125,x=>x.speed(32).sustain(.05).delay(1).postgain(.5))
+
+_piano_grain: n("1 3 4 8 1 9 4").chord("<GM7 G5 G11>".slow(2)).voicing()
+  .s("piano").transpose(24)
+  .begin(".95").speed(-1)
+  .clip(.2).hpf(500)
+  .delay(1).dfb(.6).orbit(4)
+  .room(1).sz(5).roomfade(10)
+  .pan("0|1".fast(16))
+
+drums: s("<hh [hh hh] [hh [hh hh]]> , hh:4(3,8)")
+  .postgain(.6)
+  .sometimesBy(0.2, x=>x.jux(rev()))
+  .degradeBy(0.2)
+  .lpf(choose("7000","4000","10000"))
+  .room("<0 0 0 .1 .2 .3 .4 .5 .6 0 .6 .7 .8 .9 1>")
+  .delay(choose("0.2","0.8","1")).delayfeedback(choose(".2",".9")).orbit(3)//.dt(".125|.25")
+
+rain_crackle: s("rain").slow(5).clip(1)
