@@ -1,0 +1,63 @@
+/*
+Track X: Bulu Sakai - Cara B
+by: Yago Raymond
+execute on https://strudel.cc/
+*/
+
+samples({
+  melody_rec_echo:'instruments/melody_rec_echo.wav',
+  juju2:'perc/juju_stick/juju_stick_2.wav',
+  rain:'noise/rain_crackle.wav',
+}, 'https://raw.githubusercontent.com/YAGORAYMOND/samples/refs/heads/main/');
+
+melody_rec_dry:
+s("melody_rec_echo".slow(7))
+  .scrub("{0.7!2:[1,.5] -@3 <0.8:.5> -@3 0.7:1.5 -@3 0.1!1 -@3 .25@2:1.5 -@3}".slow(14))
+  .postgain(.3)
+  .attack(1)
+  .room(1).sz(10).roomfade(10).orbit(2)
+
+melody_rec_wet:
+s("melody_rec_echo".slow(7))
+  .scrub("{0.7!2:[1,.5] -@3 <0.8:.5> -@3 0.7:1.5 -@3 0.1!1 -@3 .25@2:1.5 -@3}".slow(14))
+  .postgain(.3)
+  .attack(1)
+  .room(1).sz(10).roomfade(10).orbit(4)
+  .tremsync("20:1")
+
+melody_glitchy_echos: 
+s("melody_rec_echo".slow(7))
+  .scrub("{- 0.7!2:[1,.5] -@3 <0.8:.5> -@3 0.7:1.5 -@3 0.1!1 -@3 .25@2:1.5 -@3}".slow(14))
+  .postgain(.6)
+  .attack(.1).sustain(.1)
+  .delay(1).dt("0.1 0.2 0.05 0.3")
+  .room(1).sz(10).roomfade(10).orbit(3)
+
+rain:speed("1|.9|.8|.7|.6|.5").s("rain").clip(2).begin(".1|.2|.3|.4|.5").attack(1).release(1)
+
+drums_1:s("juju2!16").begin(.1).clip(.2).lpf("900|1300|2000|0".fast(16)).speed("4|1|2".fast(8)).gain(3).room(.2).delay("<0 1>".slow(2))
+
+_drums_2: stack(
+  s("bd:1").struct("x - - [- x]- x - -").note("<A1 G1 [G1 A1] [A1 G1]>").room(.1).orbit(5),
+  s("sd:2").struct("- - x - - - <x x [- x]> -"),
+  s("sd:2").struct("- - - - - - - [- x]").speed("<-1 -1 -2 -2>").gain(.4),
+  s("hh:1").struct("x x x x x x x x"),
+  s("hh:1").struct("- - - [- x] [- x] - - -").speed(-1).clip(0.4)
+)
+  .cpm(75/4)
+  //.cpm(75/2).speed("<1 1 0.75 0.5 0.25>".fast(1.5))
+
+/*
+//Annex:
+//Original tune for the sample "meoldy_rec_echo"
+
+larpeggio: n("0 1 2 3").chord("<A G A E>".slow(2)).mode("<above:c3 <root:c2 root:c4>>".slow(2)).voicing()
+.clip("4").s("gm_pan_flute,gm_flute")
+.lpf(slider(3000,100,3000))
+.postgain(0.5)
+.pan("0.2 0.7")
+
+melody_arpA5: n("1 3@2 1 3@3 <1 4@4 , 4@5> ".slow(4))
+  .scale("<A5 A4>:major".slow(4)).s("gm_pad_metallic").bpf(500)
+  .room(2)
+*/
